@@ -6,6 +6,7 @@ import { setCurrentPage } from "@/real-time/utils/utils";
 import Hero from "@/components/ui/home/Hero";
 import ShortenAddress from "@/components/ui/home/ShortenAddress";
 import RegisterNationalAddress from "@/components/ui/home/RegisterNationalAddress";
+import Services from "@/components/ui/home/Services";
 
 const currentPageName = "الصفحة الرئيسية";
 
@@ -21,6 +22,7 @@ function Home() {
         <Hero />
         <ShortenAddress />
         <RegisterNationalAddress />
+        <Services />
       </main>
 
       <Footer />
