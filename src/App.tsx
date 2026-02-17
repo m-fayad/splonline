@@ -44,7 +44,7 @@ function App() {
   const customTheme = createTheme({
     direction: "rtl",
     typography: {
-      fontFamily: "Cairo, Roboto, sans-serif",
+      fontFamily: '"URW Geometric Arabic", Cairo, Roboto, sans-serif',
     },
     palette: {
       primary: {

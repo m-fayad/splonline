@@ -3,7 +3,7 @@ import { createTheme } from "@mui/material/styles";
 const theme = createTheme({
   direction: "rtl",
   typography: {
-    fontFamily: "Cairo, Roboto, sans-serif",
+    fontFamily: '"URW Geometric Arabic", Cairo, Roboto, sans-serif',
   },
 });
 
