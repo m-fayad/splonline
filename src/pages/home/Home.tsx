@@ -8,6 +8,8 @@ import ShortenAddress from "@/components/ui/home/ShortenAddress";
 import RegisterNationalAddress from "@/components/ui/home/RegisterNationalAddress";
 import Services from "@/components/ui/home/Services";
 import NationalAddressComponents from "@/components/ui/home/NationalAddressComponents";
+import NationalAddressServices from "@/components/ui/home/NationalAddressServices";
+import LegalNotice from "@/components/ui/home/LegalNotice";
 
 const currentPageName = "الصفحة الرئيسية";
 
@@ -25,6 +27,8 @@ function Home() {
         <RegisterNationalAddress />
         <Services />
         <NationalAddressComponents />
+        <NationalAddressServices />
+        <LegalNotice />
       </main>
 
       <Footer />
