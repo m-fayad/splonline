@@ -7,13 +7,12 @@ const LegalNotice = () => {
       dir="rtl"
       style={{ backgroundColor: "white" }}
     >
-      <Container maxWidth="lg" sx={{ py: { xs: 6, md: 8 } }}>
+      <Container maxWidth="lg" sx={{ py: 4, mb: 5 }}>
         <Box
           sx={{
             display: "flex",
-            flexDirection: { xs: "column", md: "row" },
             alignItems: "start",
-            gap: 4,
+            gap: { xs: 2, md: 4 },
             justifyContent: "center",
           }}
         >
@@ -26,16 +25,16 @@ const LegalNotice = () => {
           />
 
           {/* Text Content */}
-          <Box sx={{ flex: 1, textAlign: { xs: "center", md: "left" } }}>
+          <Box sx={{ flex: 1, textAlign: "left" }}>
             <Typography
               variant="h4"
               component="h2"
               sx={{
                 fontWeight: "bold",
                 color: "#1e2746",
-                mb: 2,
-                fontSize: { xs: "1.5rem", md: "2rem" },
+                fontSize: { xs: "1.25rem", md: "1.75rem" },
                 fontFamily: "inherit",
+                mb: 1,
               }}
             >
               احذر من المسائل القانونية
@@ -44,7 +43,6 @@ const LegalNotice = () => {
               variant="body1"
               sx={{
                 color: "#555b7d",
-                lineHeight: 1.8,
                 fontSize: { xs: "0.95rem", md: "1.1rem" },
                 fontFamily: "inherit",
               }}

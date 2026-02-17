@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#0b3334] text-white py-12 px-6">
+    <footer className="bg-[#0b3334] text-white py-8 px-6">
       <div className="max-w-[1440px] mx-auto space-y-12">
         {/* Top Section: Certifications */}
         <div className="flex flex-wrap justify-center items-center gap-6 md:gap-8">
@@ -35,10 +35,7 @@ const Footer = () => {
             >
               شروط الخدمة
             </Link>
-            <div
-              className="md:hidden h-6 w-[1px] bg-white"
-              aria-hidden="true"
-            />
+            <div className="h-6 w-[1px] bg-white" aria-hidden="true" />
 
             <Link
               to="/privacy"
@@ -46,10 +43,7 @@ const Footer = () => {
             >
               سياسة الخصوصية
             </Link>
-            <div
-              className="md:hidden h-6 w-[1px] bg-white"
-              aria-hidden="true"
-            />
+            <div className="h-6 w-[1px] bg-white" aria-hidden="true" />
 
             <Link
               to="/privacy-notice"
@@ -60,16 +54,16 @@ const Footer = () => {
           </div>
 
           {/* Copyright Text */}
-          <div className="flex">
-            <div className="text-center lg:text-right" dir="rtl">
-              <p>© 2026 جميع الحقوق محفوظة البريد السعودي | سبل</p>
-            </div>
+          <div className="flex items-center gap-4">
+            <p className="text-center text-lg lg:text-right" dir="rtl">
+              © 2026 جميع الحقوق محفوظة البريد السعودي | سبل
+            </p>
 
             <Link to="https://www.vision2030.gov.sa/ar" target="_blank">
               <img
                 src="/assets/images/new/v2030.png"
-                width="100"
-                height="67"
+                width="80"
+                height="53"
                 className="max-w-full h-auto"
                 alt="Vision 2030"
               />

@@ -101,14 +101,14 @@ const RegisterNationalAddress = () => {
                     sx={{
                       display: "flex",
                       alignItems: "center",
-                      color: "#0f8ea3",
+                      color: "#034886",
                       fontWeight: "bold",
                       gap: 1,
                       fontSize: "0.9rem",
                     }}
                   >
-                    <ArrowBackIcon sx={{ fontSize: "1rem" }} />
                     سجّل الآن
+                    <ArrowBackIcon sx={{ fontSize: "1rem" }} />
                   </Link>
                 </Paper>
               </Grid>
@@ -158,14 +158,14 @@ const RegisterNationalAddress = () => {
                     sx={{
                       display: "flex",
                       alignItems: "center",
-                      color: "#0f8ea3",
+                      color: "#034886",
                       fontWeight: "bold",
                       gap: 1,
                       fontSize: "0.9rem",
                     }}
                   >
-                    <ArrowBackIcon sx={{ fontSize: "1rem" }} />
                     سجّل الآن
+                    <ArrowBackIcon sx={{ fontSize: "1rem" }} />
                   </Link>
                 </Paper>
               </Grid>

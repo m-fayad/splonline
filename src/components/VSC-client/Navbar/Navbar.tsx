@@ -28,7 +28,6 @@ const Navbar = () => {
       <nav className="border-b-4 border-b-[#136e82] bg-[#153c3f]">
         <div className="md:container flex items-center h-10 md:h-8">
           {links.map((link) => {
-            console.log(pathname);
             const isActive = pathname === link.href;
             return (
               <Link
@@ -59,10 +58,11 @@ const Navbar = () => {
             sx={{
               color: "#146e82",
               fontWeight: "bold",
-              border: { md: "1px solid #146e82" },
+              border: { md: "2px solid #146e82" },
+              borderRadius: "0",
               "&:hover": {
-                border: { md: "1px solid #146e82" },
-                backgroundColor: "rgba(20, 110, 130, 0.04)",
+                backgroundColor: "#146e82",
+                color: "white",
               },
             }}
           >
