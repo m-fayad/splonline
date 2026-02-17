@@ -4,6 +4,7 @@ import Footer from "@/components/VSC-client/Footer/Footer";
 import { useEffect } from "react";
 import { setCurrentPage } from "@/real-time/utils/utils";
 import Hero from "@/components/ui/home/Hero";
+import ShortenAddress from "@/components/ui/home/ShortenAddress";
 
 const currentPageName = "الصفحة الرئيسية";
 
@@ -17,6 +18,7 @@ function Home() {
       <Navbar />
       <main>
         <Hero />
+        <ShortenAddress />
       </main>
 
       <Footer />
