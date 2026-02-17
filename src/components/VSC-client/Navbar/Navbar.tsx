@@ -50,7 +50,7 @@ const Navbar = () => {
         </div>
       </nav>
 
-      <div className="flex justify-between gap-4 items-center">
+      <div className="bg-white container flex justify-between gap-4 items-center">
         <img src="/assets/images/new/logo.svg" alt="logo" />
 
         <div className="flex items-center">
