@@ -7,6 +7,7 @@ import Hero from "@/components/ui/home/Hero";
 import ShortenAddress from "@/components/ui/home/ShortenAddress";
 import RegisterNationalAddress from "@/components/ui/home/RegisterNationalAddress";
 import Services from "@/components/ui/home/Services";
+import NationalAddressComponents from "@/components/ui/home/NationalAddressComponents";
 
 const currentPageName = "الصفحة الرئيسية";
 
@@ -23,6 +24,7 @@ function Home() {
         <ShortenAddress />
         <RegisterNationalAddress />
         <Services />
+        <NationalAddressComponents />
       </main>
 
       <Footer />

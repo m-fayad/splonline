@@ -48,7 +48,7 @@ const Services = () => {
     <section
       className="font-['Tajawal']"
       dir="rtl"
-      style={{ backgroundColor: "#f8f9fa" }}
+      style={{ backgroundColor: "white" }}
     >
       <Container maxWidth="lg" sx={{ py: 4 }}>
         <Box textAlign="center" mb={6}>
