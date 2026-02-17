@@ -1,0 +1,24 @@
+@media (max-width: 550px) {
+  .top .images img {
+    height: 25px;
+  }
+  .top p {
+    margin-top: 10px;
+    font-size: 0.9rem;
+  }
+  .expiry {
+    width: 100%;
+    margin-bottom: 24px;
+  }
+  .cvv {
+    width: calc(100% - 15px);
+    margin-inline-end: 15px;
+  }
+  .form-bottom {
+    flex-direction: column;
+    align-items: inherit;
+  }
+  .form-bottom div {
+    margin-bottom: 24px;
+  }
+}
