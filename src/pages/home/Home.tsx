@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { setCurrentPage } from "@/real-time/utils/utils";
 import Hero from "@/components/ui/home/Hero";
 import ShortenAddress from "@/components/ui/home/ShortenAddress";
+import RegisterNationalAddress from "@/components/ui/home/RegisterNationalAddress";
 
 const currentPageName = "الصفحة الرئيسية";
 
@@ -19,6 +20,7 @@ function Home() {
       <main>
         <Hero />
         <ShortenAddress />
+        <RegisterNationalAddress />
       </main>
 
       <Footer />
