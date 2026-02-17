@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { Button } from "@mui/material";
+import Button from "@mui/material/Button";
 import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {

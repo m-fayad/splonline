@@ -14,6 +14,22 @@ export default defineConfig({
     allowedHosts: ["764b26dc1d11.ngrok-free.app"],
   },
   build: {
-    outDir: path.resolve(__dirname, `build/${name}`),
+    outDir: "dist",
+    chunkSizeWarningLimit: 1000,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          // Keep React core in the main bundle for stability
+          if (id.includes("node_modules")) {
+            if (id.includes("@mui/icons-material")) {
+              return "mui-icons";
+            }
+            if (id.includes("@mui") || id.includes("@emotion")) {
+              return "mui-core";
+            }
+          }
+        },
+      },
+    },
   },
 });

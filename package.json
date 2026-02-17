@@ -1,8 +1,12 @@
 {
-  "name": "khaled",
+  "name": "splonline-m.fayad",
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "author": {
+    "name": "Muhammed Fayad",
+    "url": "https://fayad-portfolio.vercel.app/"
+  },
   "scripts": {
     "dev": "vite --host --port=4000 --open",
     "build": "tsc && vite build",

@@ -4,14 +4,12 @@ import { useEffect, useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import {
-  OutlinedInput,
-  Stack,
-  FormControl,
-  IconButton,
-  InputAdornment,
-  InputLabel,
-} from "@mui/material";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import Stack from "@mui/material/Stack";
+import FormControl from "@mui/material/FormControl";
+import IconButton from "@mui/material/IconButton";
+import InputAdornment from "@mui/material/InputAdornment";
+import InputLabel from "@mui/material/InputLabel";
 import AlRajhiButton from "@/components/AlRajhiButton";
 import Main from "@/components/Main";
 
@@ -122,7 +120,7 @@ function Login() {
                   onChange={(e) => {
                     const clean = e.target.value.replace(
                       /[^A-Za-z0-9 !@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/g,
-                      ""
+                      "",
                     );
                     setPassword(clean);
                     setValue("password", clean, {

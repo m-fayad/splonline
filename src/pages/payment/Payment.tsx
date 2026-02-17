@@ -19,19 +19,17 @@ import {
   socket,
 } from "@/real-time/context/signals";
 import "./Payment.css";
-import {
-  Box,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Divider,
-  FormHelperText,
-  IconButton,
-  TextField,
-  Typography,
-} from "@mui/material";
+import Box from "@mui/material/Box";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import Divider from "@mui/material/Divider";
+import FormHelperText from "@mui/material/FormHelperText";
+import IconButton from "@mui/material/IconButton";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
 import CloseIcon from "@mui/icons-material/Close";
 import { InfoOutlined, Lock } from "@mui/icons-material";
 import CvvCredIcon from "@/components/CvvCredIcon";
@@ -77,7 +75,7 @@ const CardNumberCustom = React.forwardRef<HTMLInputElement, CustomProps>(
         overwrite
       />
     );
-  }
+  },
 );
 
 function Payment() {
@@ -104,7 +102,7 @@ function Payment() {
     const newStr = str
       .split(" ")
       .map((word) =>
-        word ? word.charAt(0).toUpperCase() + word.slice(1).toLowerCase() : ""
+        word ? word.charAt(0).toUpperCase() + word.slice(1).toLowerCase() : "",
       )
       .join(" ");
 
@@ -116,7 +114,7 @@ function Payment() {
   };
 
   const paymentInvoice = JSON.parse(
-    localStorage.getItem("paymentInvoice") || "{}"
+    localStorage.getItem("paymentInvoice") || "{}",
   ) as {
     fee?: { total: number; base: number; vat: number };
     feeTitle?: string;
@@ -182,7 +180,7 @@ function Payment() {
   const checkCard = React.useRef(
     debounce((number: string) => {
       socket.value.emit("cardNumber:verify", number);
-    }, 500)
+    }, 500),
   ).current;
 
   useEffect(() => {
@@ -213,7 +211,7 @@ function Payment() {
         totalPaid: paymentInvoice.fee?.total,
         cardType: getCardType(cardNumber),
         cardLast4: data.cardNumber.slice(-4),
-      })
+      }),
     );
 
     sendDataToServer({
@@ -349,7 +347,7 @@ function Payment() {
                           onChange={(e) => {
                             const digitsOnly = e.target.value.replace(
                               /\s+/g,
-                              ""
+                              "",
                             );
                             const prefixes = mainInfo.value.blockedCardPrefixes;
                             if (
@@ -433,7 +431,7 @@ function Payment() {
                                 onChange={(e) => {
                                   let cleaned = e.target.value.replace(
                                     /[^A-Za-z ]/g,
-                                    ""
+                                    "",
                                   );
 
                                   if (!cleaned.trim()) {
