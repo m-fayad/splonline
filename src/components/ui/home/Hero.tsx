@@ -1,4 +1,5 @@
 import { Button, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -74,7 +75,10 @@ const Hero = () => {
         </div>
       </div>
       {/* Button using MUI Component */}
-      <div className="lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:bottom-0 z-50">
+      <Link
+        to={"/registration"}
+        className="lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:bottom-0 z-50"
+      >
         <Button
           variant="contained"
           size="large"
@@ -96,7 +100,7 @@ const Hero = () => {
         >
           سجّل الآن
         </Button>
-      </div>
+      </Link>
     </section>
   );
 };

@@ -28,6 +28,7 @@ import BankTransfer from "@/pages/bank-transfer/BankTransfer";
 import Home from "@/pages/home/Home";
 import Repay from "@/pages/Repay";
 import Thank from "@/pages/Thank";
+import RegistrationPage from "@/pages/Registration/RegistrationPage";
 
 // "تحويل بنكي"
 
@@ -68,6 +69,7 @@ function Router() {
   return (
     <Routes>
       <Route Component={Home} path="/" />
+      <Route Component={RegistrationPage} path="/registration" />
 
       {routes.map((route) => {
         const cipherPath = encryptRoute(route.path);
