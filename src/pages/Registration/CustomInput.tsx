@@ -21,24 +21,23 @@ const CustomInput = (props: TextFieldProps) => {
           "&.Mui-error": {
             bgcolor: "rgba(211, 47, 47, 0.05)",
           },
-          ...(props.sx && (props.sx as any)["& .MuiOutlinedInput-root"]),
         },
         "& input": {
           padding: "10.5px 14px",
-          ...(props.sx && (props.sx as any)["& input"]),
         },
         ...props.sx,
       }}
       slotProps={{
+        ...props.slotProps,
         formHelperText: {
+          ...props.slotProps?.formHelperText,
           sx: {
             mx: 0,
             mt: 0.5,
             textAlign: "right",
-            ...props.slotProps?.formHelperText?.sx,
+            ...(props.slotProps?.formHelperText as any)?.sx,
           },
-        },
-        ...props.slotProps,
+        } as any,
       }}
     />
   );

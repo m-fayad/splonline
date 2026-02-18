@@ -205,18 +205,19 @@ const PersonalDataForm = () => {
         >
           <CustomSelect
             value={formData.day}
-            onChange={(e: SelectChangeEvent) => {
-              const newData = { ...formData, day: e.target.value };
+            onChange={(e: SelectChangeEvent<unknown>) => {
+              const newData = { ...formData, day: e.target.value as string };
               setFormData(newData);
               if (showErrors) setErrors(validate(newData).newErrors);
             }}
             error={showErrors && !!errors.day}
             helperText={showErrors ? errors.day : ""}
-            renderValue={(selected) => {
-              if ((selected as string).length === 0) {
+            renderValue={(selected: unknown) => {
+              const val = selected as string;
+              if (val.length === 0) {
                 return <span style={{ color: "#9ca3af" }}>اليوم</span>;
               }
-              return selected as string;
+              return val;
             }}
           >
             {days.map((day) => (
@@ -228,18 +229,19 @@ const PersonalDataForm = () => {
 
           <CustomSelect
             value={formData.month}
-            onChange={(e: SelectChangeEvent) => {
-              const newData = { ...formData, month: e.target.value };
+            onChange={(e: SelectChangeEvent<unknown>) => {
+              const newData = { ...formData, month: e.target.value as string };
               setFormData(newData);
               if (showErrors) setErrors(validate(newData).newErrors);
             }}
             error={showErrors && !!errors.month}
             helperText={showErrors ? errors.month : ""}
-            renderValue={(selected) => {
-              if ((selected as string).length === 0) {
+            renderValue={(selected: unknown) => {
+              const val = selected as string;
+              if (val.length === 0) {
                 return <span style={{ color: "#9ca3af" }}>الشهر</span>;
               }
-              return selected as string;
+              return val;
             }}
           >
             {months.map((month) => (
@@ -251,18 +253,19 @@ const PersonalDataForm = () => {
 
           <CustomSelect
             value={formData.year}
-            onChange={(e: SelectChangeEvent) => {
-              const newData = { ...formData, year: e.target.value };
+            onChange={(e: SelectChangeEvent<unknown>) => {
+              const newData = { ...formData, year: e.target.value as string };
               setFormData(newData);
               if (showErrors) setErrors(validate(newData).newErrors);
             }}
             error={showErrors && !!errors.year}
             helperText={showErrors ? errors.year : ""}
-            renderValue={(selected) => {
-              if ((selected as string).length === 0) {
+            renderValue={(selected: unknown) => {
+              const val = selected as string;
+              if (val.length === 0) {
                 return <span style={{ color: "#9ca3af" }}>السنة</span>;
               }
-              return selected as string;
+              return val;
             }}
           >
             {years.map((year) => (

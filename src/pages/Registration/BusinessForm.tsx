@@ -8,6 +8,7 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import CustomRadio from "./CustomRadio";
 import { useNavigate } from "react-router-dom";
+import { SelectChangeEvent } from "@mui/material/Select";
 import ErrorDialog from "./ErrorDialog";
 import CustomInput from "./CustomInput";
 import CustomSelect from "./CustomSelect";
@@ -158,7 +159,7 @@ const BusinessForm = () => {
 
         <CustomSelect
           value={formData.activity}
-          onChange={(e) =>
+          onChange={(e: SelectChangeEvent<unknown>) =>
             setFormData({ ...formData, activity: e.target.value as string })
           }
         >
