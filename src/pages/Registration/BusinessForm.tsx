@@ -189,10 +189,10 @@ const BusinessForm = () => {
             fontSize: "1.1rem",
             py: 1.5,
             px: 6,
-            borderRadius: "4px",
+            borderWidth: "2px",
             "&:hover": {
-              borderColor: "#105e70",
-              bgcolor: "rgba(19, 110, 130, 0.04)",
+              bgcolor: "#146e82",
+              color: "white",
             },
           }}
         >

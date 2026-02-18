@@ -27,18 +27,19 @@ const CustomInput = (props: TextFieldProps) => {
         },
         ...props.sx,
       }}
-      slotProps={{
-        ...props.slotProps,
-        formHelperText: {
-          ...props.slotProps?.formHelperText,
-          sx: {
-            mx: 0,
-            mt: 0.5,
-            textAlign: "right",
-            ...(props.slotProps?.formHelperText as any)?.sx,
+      slotProps={
+        {
+          ...props.slotProps,
+          formHelperText: {
+            ...(props.slotProps?.formHelperText as any),
+            sx: {
+              mx: 0,
+              mt: 0.5,
+              ...(props.slotProps?.formHelperText as any)?.sx,
+            },
           },
-        } as any,
-      }}
+        } as any
+      }
     />
   );
 };

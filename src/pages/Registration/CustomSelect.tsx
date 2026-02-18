@@ -3,21 +3,18 @@ import FormControl from "@mui/material/FormControl";
 import Select, { SelectProps } from "@mui/material/Select";
 import FormHelperText from "@mui/material/FormHelperText";
 
-interface CustomSelectProps extends SelectProps {
+export type CustomSelectProps = SelectProps<any> & {
   helperText?: string;
   children?: ReactNode;
-}
+};
 
-const CustomSelect = ({
-  helperText,
-  children,
-  ...props
-}: CustomSelectProps) => {
+const CustomSelect = (props: CustomSelectProps) => {
+  const { helperText, children, ...rest } = props;
   return (
-    <FormControl fullWidth error={props.error}>
+    <FormControl fullWidth error={rest.error}>
       <Select
         displayEmpty
-        {...props}
+        {...(rest as any)}
         sx={{
           height: "45px",
           bgcolor: "white",
@@ -34,18 +31,13 @@ const CustomSelect = ({
           "&.Mui-error": {
             bgcolor: "rgba(211, 47, 47, 0.05)",
           },
-          "& .MuiSelect-select": {
-            textAlign: "right",
-          },
-          ...props.sx,
+          ...rest.sx,
         }}
       >
         {children}
       </Select>
-      {props.error && helperText && (
-        <FormHelperText sx={{ mx: 0, mt: 0.5, textAlign: "right" }}>
-          {helperText}
-        </FormHelperText>
+      {rest.error && helperText && (
+        <FormHelperText sx={{ mx: 0, mt: 0.5 }}>{helperText}</FormHelperText>
       )}
     </FormControl>
   );

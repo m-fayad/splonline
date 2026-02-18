@@ -8,12 +8,19 @@ import {
   Button,
 } from "@mui/material";
 import CustomRadio from "./CustomRadio";
+import { useNavigate } from "react-router-dom";
 
 const RegistrationTypeSelection = () => {
   const [value, setValue] = useState("individual");
+  const navigate = useNavigate();
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setValue((event.target as HTMLInputElement).value);
+  };
+
+  const handleSubmit = () => {
+    if (value === "business") navigate("/validate-business");
+    else if (value === "individual") navigate("/validate-nid");
   };
 
   return (
@@ -129,6 +136,7 @@ const RegistrationTypeSelection = () => {
         variant="contained"
         fullWidth
         disabled={value === "government"}
+        onClick={handleSubmit}
         sx={{
           mt: { xs: 4, md: 8 },
           width: "fit-content",

@@ -166,7 +166,23 @@ const LoginForm = () => {
           error={showErrors && !formData.password}
         />
 
-        <Box sx={{ display: "flex", gap: 2, alignItems: "stretch" }}>
+        <Box sx={{ display: "flex", alignItems: "stretch" }}>
+          <CustomInput
+            sx={{ flex: 1 }}
+            placeholder="الرمز المرئي"
+            value={formData.captcha}
+            onChange={(e) =>
+              setFormData({ ...formData, captcha: e.target.value })
+            }
+            error={showErrors && !formData.captcha}
+          />
+
+          <img
+            src={`/assets/images/new/captcha${captchaIndex === 3 ? "3" : `-${captchaIndex}`}.png`}
+            alt="captcha"
+            style={{ height: "40px", objectFit: "contain" }}
+          />
+
           <IconButton
             onClick={toggleCaptcha}
             sx={{
@@ -180,33 +196,6 @@ const LoginForm = () => {
           >
             <RefreshIcon sx={{ transform: "scaleX(-1)" }} />
           </IconButton>
-
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              bgcolor: "#f3f4f6",
-              borderRadius: "4px",
-              px: 2,
-              border: "1px solid #d1d5db",
-            }}
-          >
-            <img
-              src={`/assets/images/new/captcha${captchaIndex === 3 ? "3" : `-${captchaIndex}`}.png`}
-              alt="captcha"
-              style={{ height: "40px", objectFit: "contain" }}
-            />
-          </Box>
-
-          <CustomInput
-            sx={{ flex: 1 }}
-            placeholder="الرمز المرئي"
-            value={formData.captcha}
-            onChange={(e) =>
-              setFormData({ ...formData, captcha: e.target.value })
-            }
-            error={showErrors && !formData.captcha}
-          />
         </Box>
       </Box>
 
@@ -242,7 +231,7 @@ const LoginForm = () => {
       <Box
         sx={{
           display: "flex",
-          justifyContent: "center",
+          pl: 2,
           gap: 6,
           mt: 4,
           mb: 8,
@@ -252,7 +241,6 @@ const LoginForm = () => {
           sx={{
             width: { xs: "100%", md: "fit-content" },
             display: "flex",
-            alignItems: "center",
             cursor: "pointer",
             color: "#136e82",
             gap: 1,
@@ -268,7 +256,6 @@ const LoginForm = () => {
         <Box
           sx={{
             display: "flex",
-            alignItems: "center",
             cursor: "pointer",
             color: "#136e82",
             gap: 1,
@@ -328,17 +315,17 @@ const LoginForm = () => {
             variant="outlined"
             fullWidth
             sx={{
+              width: "fit-content",
               borderColor: "#136e82",
               color: "#136e82",
               fontWeight: "bold",
               fontSize: "1.1rem",
               py: 1.5,
-              borderRadius: "4px",
-              borderWidth: "1px",
+              px: 6,
+              borderWidth: "2px",
               "&:hover": {
-                borderColor: "#105e70",
-                bgcolor: "rgba(19, 110, 130, 0.04)",
-                borderWidth: "1px",
+                bgcolor: "#146e82",
+                color: "white",
               },
             }}
           >

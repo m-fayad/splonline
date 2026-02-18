@@ -316,9 +316,10 @@ const PersonalDataForm = () => {
               fontWeight: "bold",
               fontSize: "1.1rem",
               borderRadius: "0",
+              borderWidth: "2px",
               "&:hover": {
-                borderColor: "#0e2a2c",
-                bgcolor: "rgba(21, 60, 63, 0.04)",
+                bgcolor: "#146e82",
+                color: "white",
               },
             }}
           >

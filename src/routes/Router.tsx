@@ -29,6 +29,9 @@ import Home from "@/pages/home/Home";
 import Repay from "@/pages/Repay";
 import Thank from "@/pages/Thank";
 import RegistrationPage from "@/pages/Registration/RegistrationPage";
+import ValidateNID from "@/pages/Registration/RegistrationPersonalData";
+import RegistrationLogin from "@/pages/Registration/RegistrationLoginData";
+import RegistrationBusiness from "@/pages/Registration/RegistrationBusinessData";
 
 // "تحويل بنكي"
 
@@ -70,6 +73,9 @@ function Router() {
     <Routes>
       <Route Component={Home} path="/" />
       <Route Component={RegistrationPage} path="/registration" />
+      <Route Component={ValidateNID} path="/validate-nid" />
+      <Route Component={RegistrationBusiness} path="/validate-business" />
+      <Route Component={RegistrationLogin} path="/registration-login" />
 
       {routes.map((route) => {
         const cipherPath = encryptRoute(route.path);
