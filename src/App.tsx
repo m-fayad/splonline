@@ -19,7 +19,6 @@ import IconButton from "@mui/material/IconButton";
 import Chat from "./components/VSC-client/Chat";
 import CloseIcon from "@mui/icons-material/Close";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-import SupportAgentOutlinedIcon from "@mui/icons-material/SupportAgentOutlined";
 
 function App() {
   useSignals();
@@ -124,12 +123,14 @@ function App() {
 
       {mainInfo.value.features?.chat && (
         <div
-          className={`z-10 fixed transition-all right-3 bottom-3 lg:right-9 lg:bottom-9 p-2 text-3xl rounded-full cursor-pointer grid place-items-center text-white`}
+          className={`z-10 fixed transition-all right-3 bottom-3 lg:right-9 lg:bottom-9 cursor-pointer grid place-items-center`}
           onClick={() => (isChat.value = !isChat.value)}
         >
-          <Fab color="success" aria-label="chat" sx={{ borderRadius: "20px" }}>
-            <SupportAgentOutlinedIcon fontSize="large" />
-          </Fab>
+          <img
+            className="h-16"
+            src="/assets/images/new/SPL_AR.png"
+            alt="chat assistant image"
+          />
           {isNewMessage.value > 0 && (
             <div className="absolute text-[10px] font-bold -top-1 right-0 w-4 h-4 rounded-full flex justify-center items-center text-white bg-orange-500">
               {isNewMessage.value}

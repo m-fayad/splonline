@@ -1,4 +1,5 @@
 import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -12,7 +13,7 @@ const Header = () => {
           />
         </div>
 
-        <div className="flex items-center">
+        <Link to={"/registration-login"} className="flex items-center">
           <Button
             variant="text"
             sx={{
@@ -29,7 +30,7 @@ const Header = () => {
           >
             تسجيل
           </Button>
-        </div>
+        </Link>
       </div>
     </header>
   );

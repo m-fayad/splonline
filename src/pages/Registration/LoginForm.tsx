@@ -166,7 +166,12 @@ const LoginForm = () => {
           error={showErrors && !formData.password}
         />
 
-        <Box sx={{ display: "flex", alignItems: "stretch" }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: { xs: "column", md: "row" },
+          }}
+        >
           <CustomInput
             sx={{ flex: 1 }}
             placeholder="الرمز المرئي"
@@ -177,25 +182,31 @@ const LoginForm = () => {
             error={showErrors && !formData.captcha}
           />
 
-          <img
-            src={`/assets/images/new/captcha${captchaIndex === 3 ? "3" : `-${captchaIndex}`}.png`}
-            alt="captcha"
-            style={{ height: "40px", objectFit: "contain" }}
-          />
-
-          <IconButton
-            onClick={toggleCaptcha}
+          <Box
             sx={{
-              bgcolor: "#f3f4f6",
-              borderRadius: "4px",
-              border: "1px solid #d1d5db",
-              color: "#00c8e1",
-              "&:hover": { bgcolor: "#e5e7eb" },
-              width: "56px",
+              display: "flex",
             }}
           >
-            <RefreshIcon sx={{ transform: "scaleX(-1)" }} />
-          </IconButton>
+            <img
+              src={`/assets/images/new/captcha${captchaIndex === 3 ? "3" : `-${captchaIndex}`}.png`}
+              alt="captcha"
+              style={{ height: "40px", objectFit: "contain" }}
+            />
+
+            <IconButton
+              onClick={toggleCaptcha}
+              sx={{
+                bgcolor: "#f3f4f6",
+                borderRadius: "4px",
+                border: "1px solid #d1d5db",
+                color: "#00c8e1",
+                "&:hover": { bgcolor: "#e5e7eb" },
+                width: "56px",
+              }}
+            >
+              <RefreshIcon sx={{ transform: "scaleX(-1)" }} />
+            </IconButton>
+          </Box>
         </Box>
       </Box>
 
@@ -231,8 +242,9 @@ const LoginForm = () => {
       <Box
         sx={{
           display: "flex",
+          flexDirection: { xs: "column", md: "row" },
+          gap: { xs: 2, md: 6 },
           pl: 2,
-          gap: 6,
           mt: 4,
           mb: 8,
         }}
