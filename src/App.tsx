@@ -16,7 +16,6 @@ import { decryptRoute } from "./real-time/utils/utils";
 import Fab from "@mui/material/Fab";
 import { createTheme, ThemeProvider } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
-import { motion } from "framer-motion";
 import Chat from "./components/VSC-client/Chat";
 import CloseIcon from "@mui/icons-material/Close";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
@@ -140,7 +139,7 @@ function App() {
       )}
 
       {isChat.value && (
-        <motion.div className="bg-white origin-bottom-right h-[500px] max-w-sm w-[90dvw] sm-w-[82dvw] shadow-xl py-3 fixed right-5 bottom-24 lg:right-24 border-gray-300 rounded-xl z-[99999]">
+        <div className="bg-white origin-bottom-right h-[500px] max-w-sm w-[90dvw] sm-w-[82dvw] shadow-xl py-3 fixed right-5 bottom-24 lg:right-24 border-gray-300 rounded-xl z-[99999]">
           <div className="absolute left-0 flex justify-between items-center w-full px-4">
             <h2 className="text-xl font-bold text-main">كيف يمكننا مساعدتك؟</h2>
             <IconButton onClick={() => (isChat.value = false)} color="inherit">
@@ -149,7 +148,7 @@ function App() {
           </div>
 
           <Chat />
-        </motion.div>
+        </div>
       )}
     </div>
   );

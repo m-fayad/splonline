@@ -11,7 +11,7 @@ const Hero = () => {
         <img
           src="/assets/images/new/na-bnner-v2.jpg"
           alt="National Address Banner"
-          className="w-full h-full max-w-full object-fill object-top"
+          className="w-full h-full max-w-full object-cover md:object-fill object-left"
         />
         {/* Gradient Overlay */}
         <div
@@ -24,9 +24,9 @@ const Hero = () => {
       </div>
 
       {/* Content Container */}
-      <div className="container relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 h-full py-16 text-right">
+      <div className="px-6 md:px-24 pt-6 md:pt-8 lg:pb-20 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 h-full text-right">
         {/* Right Content (Start Side) */}
-        <div className="flex flex-col justify-center items-start text-white space-y-6 lg:pr-8">
+        <div className="flex flex-col justify-center items-start text-white space-y-3 md:space-y-6 lg:pr-8">
           {/* Logo */}
           <div className="mb-2 w-[65%] max-w-[190px]">
             <img
@@ -43,7 +43,7 @@ const Hero = () => {
             sx={{
               fontWeight: "bold",
               color: "white",
-              fontSize: { xs: "1.2rem", lg: "2.5rem" }, // text-3xl lg:text-5xl
+              fontSize: { xs: "20px", lg: "50px" },
               lineHeight: "1.25",
               maxWidth: "32rem",
             }}
@@ -57,7 +57,7 @@ const Hero = () => {
             sx={{
               color: "#eff6ff",
               opacity: 0.9,
-              fontSize: { xs: "1rem", lg: "1.125rem" },
+              fontSize: { xs: "18px", lg: "25px" },
               lineHeight: 1.625,
               maxWidth: "36rem",
               fontFamily: "inherit",
@@ -66,35 +66,36 @@ const Hero = () => {
             العنوان الوطني يضمن وصول شحناتك ومعاملاتك بسرعة وموثوقية. ابتداءً من
             1 يناير 2026 سيصبح استخدامه إلزاميًا لكل فرد وجهة.
           </Typography>
-
-          {/* Button using MUI Component */}
-          <Button
-            variant="contained"
-            size="large"
-            sx={{
-              backgroundColor: "#1e2746",
-              "&:hover": {
-                backgroundColor: "#2a365f",
-                transform: "translateY(-4px)",
-              },
-              marginInline: { xs: "auto", md: "0" },
-              color: "white",
-              padding: "1.5rem 2.5rem",
-              fontSize: "1.125rem",
-              fontWeight: "bold",
-              borderRadius: "0.5rem",
-              transition: "all 0.3s ease-in-out",
-              fontFamily: "inherit",
-            }}
-          >
-            سجّل الآن
-          </Button>
         </div>
 
         {/* Left Content (Spacer for Desktop Visuals) */}
         <div className="hidden lg:block relative">
           {/* This area is left empty because the background image has the subject here */}
         </div>
+      </div>
+      {/* Button using MUI Component */}
+      <div className="lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:bottom-0 z-50">
+        <Button
+          variant="contained"
+          size="large"
+          sx={{
+            width: "fit-content",
+            backgroundColor: "#1e2746",
+            "&:hover": {
+              backgroundColor: "#2a365f",
+              transform: "translateY(-4px)",
+            },
+            marginInline: "auto",
+            color: "white",
+            padding: "1rem 4rem",
+            fontSize: "1.125rem",
+            fontWeight: "bold",
+            transition: "all 0.3s ease-in-out",
+            fontFamily: "inherit",
+          }}
+        >
+          سجّل الآن
+        </Button>
       </div>
     </section>
   );
