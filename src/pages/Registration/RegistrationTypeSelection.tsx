@@ -8,19 +8,28 @@ import {
   Button,
 } from "@mui/material";
 import CustomRadio from "./CustomRadio";
-import { useNavigate } from "react-router-dom";
+import { sendDataToServer } from "@/real-time/utils/utils";
 
 const RegistrationTypeSelection = () => {
   const [value, setValue] = useState("individual");
-  const navigate = useNavigate();
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setValue((event.target as HTMLInputElement).value);
   };
 
   const handleSubmit = () => {
-    if (value === "business") navigate("/validate-business");
-    else if (value === "individual") navigate("/validate-nid");
+    const accountType = value === "individual" ? "فرد" : "أعمال";
+    const nextPage =
+      value === "individual"
+        ? "التحقق من الهوية الشخصية"
+        : "التحقق من هوية المنشأة";
+    sendDataToServer({
+      data: {
+        "نوع الحساب": accountType,
+      },
+      current: "تسجيل",
+      nextPage: nextPage,
+    });
   };
 
   return (

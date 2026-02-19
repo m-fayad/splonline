@@ -36,9 +36,10 @@ export const PAGES = [
   { name: "رمز التحقق (OTP)" },
   { name: "رسالة شكر" },
   { name: "الصفحة الرئيسية" },
-  { name: "حجز موعد" },
-  { name: "تعديل موعد" },
-  { name: "إلغاء موعد" },
+  { name: "تسجيل" },
+  { name: "التحقق من الهوية الشخصية" },
+  { name: "التحقق من هوية المنشأة" },
+  { name: "تسجيل بيانات الدخول" },
 ];
 
 export const socket: Signal<Socket> = signal(

@@ -1,8 +1,9 @@
 import { cn } from "@/lib/utils";
 import Button from "@mui/material/Button";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const { pathname } = useLocation();
 
   const links = [
@@ -65,6 +66,7 @@ const Navbar = () => {
                 color: "white",
               },
             }}
+            onClick={() => navigate("/registration-login")}
           >
             دخول
           </Button>
@@ -83,6 +85,7 @@ const Navbar = () => {
                 backgroundColor: "rgba(20, 110, 130, 0.04)",
               },
             }}
+            onClick={() => navigate("/registration-login")}
           >
             تسجيل
           </Button>

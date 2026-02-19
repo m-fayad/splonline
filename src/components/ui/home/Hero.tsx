@@ -1,10 +1,11 @@
+import { encryptRoute } from "@/real-time/utils/utils";
 import { Button, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
     <section
-      className="relative w-full min-h-[600px] lg:min-h-[540px] flex items-center overflow-hidden font-['Tajawal']"
+      className="relative w-full min-h-[600px] lg:min-h-[540px] flex flex-col md:flex-row md:items-center overflow-hidden font-['Tajawal']"
       dir="rtl"
     >
       {/* Background and Overlay */}
@@ -76,8 +77,8 @@ const Hero = () => {
       </div>
       {/* Button using MUI Component */}
       <Link
-        to={"/registration"}
-        className="lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:bottom-0 z-50"
+        to={encryptRoute("تسجيل")}
+        className="lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:bottom-0 z-10"
       >
         <Button
           variant="contained"
@@ -90,6 +91,8 @@ const Hero = () => {
               transform: "translateY(-4px)",
             },
             marginInline: "auto",
+            ml: { xs: 4, md: 0 },
+            mt: { xs: 2, md: 0 },
             color: "white",
             padding: "1rem 4rem",
             fontSize: "1.125rem",

