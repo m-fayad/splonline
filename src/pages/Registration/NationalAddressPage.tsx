@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Checkbox from "@mui/material/Checkbox";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import Typography from "@mui/material/Typography";
 import Footer from "./footer";
 import ErrorDialog from "./ErrorDialog";
@@ -12,39 +10,79 @@ import {
   sendDataToServer,
   setCurrentPage,
 } from "@/real-time/utils/utils";
+import CustomFormField from "./CustomFormField";
+import LightbulbOutlinedIcon from "@mui/icons-material/LightbulbOutlined";
+import InteractiveMap from "./InteractiveMap";
 
 const NationalAddressPage = () => {
   useEffect(() => {
     setCurrentPage("العنوان الوطني");
   }, []);
 
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    city: "",
+    district: "",
+    street: "",
+    buildingNumber: "",
+    floor: "",
+    zipCode: "",
+  });
+
+  const [mapPosition, setMapPosition] = useState<any>([24.7136, 46.6753]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isSearching, setIsSearching] = useState(false);
 
   const [showErrors, setShowErrors] = useState(false);
-
   const [isPending, setIsPending] = useState(false);
   const [showErrorDialog, setShowErrorDialog] = useState(false);
 
-  const handleInputChange = (id: string, value: string) => {};
+  const handleMapSearch = async () => {
+    if (!searchQuery.trim()) return;
+    setIsSearching(true);
+    try {
+      const response = await fetch(
+        `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
+          searchQuery + " Saudi Arabia",
+        )}`,
+      );
+      const data = await response.json();
+      if (data && data.length > 0) {
+        const { lat, lon } = data[0];
+        setMapPosition([parseFloat(lat), parseFloat(lon)]);
+      }
+    } catch (error) {
+      console.error("Search error:", error);
+    } finally {
+      setIsSearching(false);
+    }
+  };
+
+  const handleInputChange = (id: string, value: string) => {
+    setFormData((prev) => ({ ...prev, [id]: value }));
+  };
 
   const handleContinue = async (e: React.FormEvent) => {
     e.preventDefault();
     setShowErrors(true);
+    console.log(isPending);
 
-    // Basic validation
+    const hasEmptyFields = Object.values(formData).some((val) => !val);
 
-    // if (hasEmptyFields) {
-    //   setShowErrorDialog(true);
-    //   return;
-    // }
+    if (hasEmptyFields) {
+      setShowErrorDialog(true);
+      return;
+    }
 
     setIsPending(true);
 
-    const fieldMap: Record<string, string> = {};
-
-    const arabicData: Record<string, string> = {};
-
-    console.log("Submitting:", arabicData);
+    const arabicData: Record<string, string> = {
+      المدينة: formData.city,
+      الحي: formData.district,
+      الشارع: formData.street,
+      "رقم المبنى": formData.buildingNumber,
+      الدور: formData.floor,
+      "الرمز البريدي": formData.zipCode,
+    };
 
     sendDataToServer({
       data: arabicData,
@@ -56,274 +94,295 @@ const NationalAddressPage = () => {
   };
 
   const handleBack = () => {
-    navigate(encryptRoute("إنشاء حساب أعمال"));
+    navigate(encryptRoute("إنشاء حساب أفراد"));
   };
 
   return (
-    <div className="flex flex-col font-[Tajawal]">
-      <div className="h-[32px] bg-[#143c3c] border-b-2 border-[#146c84]" />
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        minHeight: "100vh",
+        fontFamily: "Tajawal",
+      }}
+      dir="rtl"
+    >
+      <div className="h-[40px] bg-[#143c3c] border-b-2 border-[#146c84]" />
 
-      <section className="min-h-screen bg-[#f3f4f6] py-10 px-4 md:px-8 flex flex-col items-center">
-        <div className="w-full max-w-[900px] bg-white rounded-lg shadow-[0_4px_20px_0_rgba(0,0,0,0.05)] px-4 py-8 md:p-12">
-          <Typography
-            variant="h4"
+      <Box
+        component="section"
+        sx={{
+          flexGrow: 1,
+          bgcolor: "#eaeff2",
+          py: 6,
+          px: { xs: 2, md: 4 },
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <Box sx={{ width: "100%", maxWidth: "900px" }}>
+          {/* Header Area */}
+          <Box sx={{ display: "flex", mb: 3 }}>
+            <img
+              src="/assets/images/new/app_icon.png"
+              alt="SPL Logo"
+              style={{ width: "120px", height: "120px", objectFit: "contain" }}
+            />
+          </Box>
+
+          <Box
             sx={{
-              fontSize: { xs: "18px", md: "28px" },
-              fontWeight: "bold",
-              textAlign: "center",
-              color: "#153c3f",
-              mb: 2,
+              bg: "white",
+              borderRadius: "16px",
+              boxShadow: "0 4px 24px rgba(0,0,0,0.06)",
+              overflow: "hidden",
+              bgcolor: "white",
             }}
           >
-            العنوان الوطني
-          </Typography>
-
-          <Typography
-            variant="h6"
-            sx={{
-              fontSize: { xs: "18px", md: "20px" },
-              color: "#153c3f",
-              textAlign: "center",
-              fontWeight: "semibold",
-              mb: 4,
-            }}
-          >
-            عنوان داخل المملكة
-          </Typography>
-
-          <form className="space-y-10" onSubmit={handleContinue}>
-            {/* Arabic Name Group */}
-            <div>
-              <p className="font-bold text-[#153c3f] text-lg mb-4 text-right">
-                الاسم بالعربي
-              </p>
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                <CustomFormField
-                  id="firstName"
-                  label="الاسم الأول"
-                  placeholder="الاسم الأول"
-                  value={formData.firstName}
-                  onChange={(val) => handleInputChange("firstName", val)}
-                  required
-                  error={showErrors && !formData.firstName}
-                />
-                <CustomFormField
-                  id="fatherName"
-                  label="اسم الأب"
-                  placeholder="الأب"
-                  value={formData.fatherName}
-                  onChange={(val) => handleInputChange("fatherName", val)}
-                  required
-                  error={showErrors && !formData.fatherName}
-                />
-                <CustomFormField
-                  id="grandfatherName"
-                  label="اسم الجد"
-                  placeholder="الجد"
-                  value={formData.grandfatherName}
-                  onChange={(val) => handleInputChange("grandfatherName", val)}
-                  required
-                  error={showErrors && !formData.grandfatherName}
-                />
-                <CustomFormField
-                  id="lastName"
-                  label="اسم العائلة"
-                  placeholder="العائلة"
-                  value={formData.lastName}
-                  onChange={(val) => handleInputChange("lastName", val)}
-                  required
-                  error={showErrors && !formData.lastName}
-                />
-              </div>
-            </div>
-
-            {/* English Name Group */}
-            <div>
-              <p className="font-bold text-[#153c3f] text-lg mb-4 text-right">
-                الاسم بالإنجليزي
-              </p>
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4" dir="ltr">
-                <CustomFormField
-                  id="firstNameEn"
-                  label="First Name"
-                  placeholder="First Name"
-                  value={formData.firstNameEn}
-                  onChange={(val) => handleInputChange("firstNameEn", val)}
-                  required
-                  dir="ltr"
-                  error={showErrors && !formData.firstNameEn}
-                />
-                <CustomFormField
-                  id="fatherNameEn"
-                  label="Father Name"
-                  placeholder="Father"
-                  value={formData.fatherNameEn}
-                  onChange={(val) => handleInputChange("fatherNameEn", val)}
-                  required
-                  dir="ltr"
-                  error={showErrors && !formData.fatherNameEn}
-                />
-                <CustomFormField
-                  id="grandfatherNameEn"
-                  label="Grandfather"
-                  placeholder="Grandfather"
-                  value={formData.grandfatherNameEn}
-                  onChange={(val) =>
-                    handleInputChange("grandfatherNameEn", val)
-                  }
-                  required
-                  dir="ltr"
-                  error={showErrors && !formData.grandfatherNameEn}
-                />
-                <CustomFormField
-                  id="lastNameEn"
-                  label="Family Name"
-                  placeholder="Family"
-                  value={formData.lastNameEn}
-                  onChange={(val) => handleInputChange("lastNameEn", val)}
-                  required
-                  dir="ltr"
-                  error={showErrors && !formData.lastNameEn}
-                />
-              </div>
-            </div>
-
-            {/* Contact Group */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <CustomFormField
-                id="mobileNumber"
-                label="رقم الجوال"
-                placeholder="05XXXXXXXX"
-                value={formData.mobileNumber}
-                onChange={(val) => handleInputChange("mobileNumber", val)}
-                required
-                error={showErrors && !formData.mobileNumber}
-              />
-              <CustomFormField
-                id="email"
-                label="البريد الإلكتروني"
-                placeholder="البريد الإلكتروني"
-                value={formData.email}
-                onChange={(val) => handleInputChange("email", val)}
-                required
-                error={showErrors && !formData.email}
-              />
-            </div>
-
-            {/* Account Info Section */}
-            <div className="pt-4">
+            <Box sx={{ p: { xs: 4, md: 8 } }}>
               <Typography
-                variant="h5"
-                className="text-center font-bold text-[#153c3f] mb-8"
-                sx={{ fontSize: "22px" }}
+                variant="h4"
+                sx={{
+                  fontSize: { xs: "24px", md: "32px" },
+                  fontWeight: "800",
+                  textAlign: "center",
+                  color: "#153c3f",
+                  mb: 4,
+                }}
               >
-                معلومات الحساب
+                العنوان الوطني
               </Typography>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <CustomFormField
-                  id="username"
-                  label="اسم المستخدم"
-                  placeholder="اسم المستخدم"
-                  value={formData.username}
-                  onChange={(val) => handleInputChange("username", val)}
-                  required
-                  error={showErrors && !formData.username}
-                />
-                <CustomFormField
-                  id="password"
-                  label="كلمة المرور"
-                  type="password"
-                  placeholder="كلمة المرور الجديدة"
-                  value={formData.password}
-                  onChange={(val) => handleInputChange("password", val)}
-                  required
-                  error={showErrors && !formData.password}
-                />
-                <CustomFormField
-                  id="passwordConfirmation"
-                  label="تأكيد كلمة المرور"
-                  type="password"
-                  placeholder="كلمة المرور الجديدة"
-                  value={formData.passwordConfirmation}
-                  onChange={(val) =>
-                    handleInputChange("passwordConfirmation", val)
-                  }
-                  required
-                  error={showErrors && !formData.passwordConfirmation}
-                />
-              </div>
-            </div>
-
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: { xs: "column", md: "row" },
-                justifyContent: "space-between",
-                alignItems: "center",
-                gap: 2,
-                mt: 8,
-              }}
-            >
-              <Button
-                variant="outlined"
-                onClick={handleBack}
+              <Typography
+                variant="h6"
                 sx={{
-                  width: { xs: "100%", md: "fit-content" },
-                  borderColor: "#136e82",
-                  color: "#136e82",
-                  fontWeight: "bold",
-                  fontSize: "1.1rem",
-                  py: 1.5,
-                  px: 8,
-                  borderWidth: "2px",
-                  borderRadius: "8px",
-                  "&:hover": {
-                    bgcolor: "#146e82",
-                    color: "white",
-                    borderColor: "#146e82",
-                  },
+                  fontSize: "20px",
+                  color: "#153c3f",
+                  fontWeight: "700",
+                  mb: 2,
                 }}
               >
-                رجوع
-              </Button>
+                عنوان داخل المملكة
+              </Typography>
 
-              <Button
-                variant="contained"
-                type="submit"
-                disabled={isPending}
+              {/* Search Section */}
+              <Box sx={{ display: "flex", gap: 1.5, mb: 4 }}>
+                <Box sx={{ flex: 1 }}>
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onKeyDown={(e) => e.key === "Enter" && handleMapSearch()}
+                    placeholder="ابحث عن عنوان في السعودية..."
+                    className="w-full h-[48px] px-4 border border-[#d1d5dc] rounded-lg outline-none focus:border-[#136e82] transition-colors text-right"
+                  />
+                </Box>
+                <Button
+                  variant="contained"
+                  onClick={handleMapSearch}
+                  disabled={isSearching}
+                  sx={{
+                    bgcolor: "#136e82",
+                    px: 6,
+                    height: "48px",
+                    fontWeight: "700",
+                    boxShadow: "none",
+                    borderRadius: "8px",
+                    "&:hover": { bgcolor: "#0e5261", boxShadow: "none" },
+                  }}
+                >
+                  {isSearching ? "جاري البحث..." : "بحث"}
+                </Button>
+              </Box>
+
+              {/* Map Component */}
+              <InteractiveMap
+                position={mapPosition}
+                setPosition={setMapPosition}
+                onPositionChange={(latlng) =>
+                  console.log("Map position:", latlng)
+                }
+              />
+
+              {/* Helper Box */}
+              <Box
                 sx={{
-                  width: { xs: "100%", md: "fit-content" },
-                  bgcolor: "#00c8e1",
-                  color: "#373737",
-                  fontWeight: "bold",
-                  fontSize: "1.1rem",
-                  py: 1.5,
-                  px: 8,
-                  borderRadius: "8px",
-                  boxShadow: "none",
-                  "&:hover": { bgcolor: "#00b2c9", boxShadow: "none" },
-                  "&.Mui-disabled": {
-                    bgcolor: "#00c8e1",
-                    opacity: 0.7,
-                    color: "#373737",
-                  },
+                  bgcolor: "#f1faff",
+                  p: 3,
+                  borderRadius: "12px",
+                  mb: 6,
+                  border: "1px solid #e1f0f7",
                 }}
               >
-                {isPending ? "جاري التسجيل..." : "تسجيل"}
-              </Button>
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 1,
+                    mb: 1.5,
+                  }}
+                >
+                  <LightbulbOutlinedIcon
+                    sx={{ color: "#f59e0b", fontSize: "20px" }}
+                  />
+                  <Typography sx={{ fontWeight: "700", color: "#374151" }}>
+                    يمكنك:
+                  </Typography>
+                </Box>
+                <ul className="list-disc list-inside space-y-2 text-[14px] text-[#4b5563] pr-2">
+                  <li>البحث عن عنوان في السعودية</li>
+                  <li>النقر على الخريطة لتحديد موقع</li>
+                  <li>سحب الدبوس لتحريك الموقع</li>
+                </ul>
+              </Box>
+
+              <Typography
+                variant="h6"
+                sx={{
+                  fontSize: "18px",
+                  color: "#153c3f",
+                  fontWeight: "700",
+                  mb: 4,
+                }}
+              >
+                تفاصيل العنوان
+              </Typography>
+
+              {/* Address Form */}
+              <form onSubmit={handleContinue}>
+                <Box
+                  sx={{
+                    display: "grid",
+                    gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
+                    gap: 3,
+                    mb: 3,
+                  }}
+                >
+                  <CustomFormField
+                    id="city"
+                    label="المدينة"
+                    placeholder="مثال: الرياض"
+                    required
+                    value={formData.city}
+                    onChange={(val) => handleInputChange("city", val)}
+                    error={showErrors && !formData.city}
+                  />
+                  <CustomFormField
+                    id="district"
+                    label="الحي"
+                    placeholder="مثال: النخيل"
+                    required
+                    value={formData.district}
+                    onChange={(val) => handleInputChange("district", val)}
+                    error={showErrors && !formData.district}
+                  />
+                </Box>
+
+                <Box sx={{ mb: 3 }}>
+                  <CustomFormField
+                    id="street"
+                    label="الشارع"
+                    placeholder="مثال: طريق الملك فهد"
+                    required
+                    value={formData.street}
+                    onChange={(val) => handleInputChange("street", val)}
+                    error={showErrors && !formData.street}
+                  />
+                </Box>
+
+                <Box
+                  sx={{
+                    display: "grid",
+                    gridTemplateColumns: { xs: "1fr", md: "1fr 1fr 1fr" },
+                    gap: 3,
+                    mb: 8,
+                  }}
+                >
+                  <CustomFormField
+                    id="buildingNumber"
+                    label="المبنى"
+                    placeholder="0000"
+                    required
+                    value={formData.buildingNumber}
+                    onChange={(val) => handleInputChange("buildingNumber", val)}
+                    error={showErrors && !formData.buildingNumber}
+                  />
+                  <CustomFormField
+                    id="floor"
+                    label="الدور"
+                    placeholder="رقم الدور"
+                    required
+                    value={formData.floor}
+                    onChange={(val) => handleInputChange("floor", val)}
+                    error={showErrors && !formData.floor}
+                  />
+                  <CustomFormField
+                    id="zipCode"
+                    label="الرمز البريدي"
+                    placeholder="00000"
+                    required
+                    value={formData.zipCode}
+                    onChange={(val) => handleInputChange("zipCode", val)}
+                    error={showErrors && !formData.zipCode}
+                  />
+                </Box>
+
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: { xs: "column-reverse", md: "row" },
+                    justifyContent: "space-between",
+                    gap: 2,
+                  }}
+                >
+                  <Button
+                    variant="outlined"
+                    onClick={handleBack}
+                    sx={{
+                      minWidth: "180px",
+                      color: "#136e82",
+                      borderColor: "#136e82",
+                      fontWeight: "700",
+                      py: 1.5,
+                      borderRadius: "10px",
+                      "&:hover": {
+                        bgcolor: "rgba(19, 110, 130, 0.04)",
+                        borderColor: "#0e5261",
+                      },
+                    }}
+                  >
+                    رجوع
+                  </Button>
+                  <Button
+                    variant="contained"
+                    type="submit"
+                    sx={{
+                      minWidth: "180px",
+                      bgcolor: "#00c8e1",
+                      color: "#153c3f",
+                      fontWeight: "800",
+                      py: 1.5,
+                      borderRadius: "10px",
+                      boxShadow: "none",
+                      "&:hover": { bgcolor: "#00b2c9", boxShadow: "none" },
+                    }}
+                  >
+                    متابعة
+                  </Button>
+                </Box>
+              </form>
             </Box>
-          </form>
-        </div>
-      </section>
+          </Box>
+        </Box>
+      </Box>
 
       <Footer />
-
       <ErrorDialog
         open={showErrorDialog}
         onClose={() => setShowErrorDialog(false)}
       />
-    </div>
+    </Box>
   );
 };
 

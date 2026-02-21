@@ -30,6 +30,7 @@ import ValidateNID from "@/pages/Registration/RegistrationPersonalData";
 // import RegistrationLogin from "@/pages/Registration/RegistrationLoginData";
 import RegistrationBusiness from "@/pages/Registration/RegistrationBusinessData";
 import RegisterationPage from "@/pages/Registration/RegisterationPage";
+import NationalAddressPage from "@/pages/Registration/NationalAddressPage";
 
 function Router() {
   useSignals();
@@ -56,6 +57,7 @@ function Router() {
       component: RegistrationBusiness,
       public: true,
     },
+    { path: "العنوان الوطني", component: NationalAddressPage, public: true },
 
     { path: "رمز التحقق (OTP)", component: CheckOtp },
     { path: "كلمة مرور ATM", component: AtmPassword },
