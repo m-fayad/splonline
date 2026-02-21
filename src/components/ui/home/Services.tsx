@@ -60,22 +60,22 @@ const Services = () => {
               color: "#1e2746",
               mb: 2,
               fontFamily: "inherit",
-              fontSize: { md: "2rem" },
+              fontSize: { md: "2rem", lg: "2.5rem" },
             }}
           >
-            ذات مميزات استثنائية
+            خدمة مجانية
           </Typography>
-          {/* <Typography
+          <Typography
             variant="h6"
             sx={{
-              color: "#0f8ea3",
+              color: "#222753",
               fontWeight: 400,
               fontFamily: "inherit",
               fontSize: { xs: "1.1rem", md: "1.2rem" },
             }}
           >
-           
-          </Typography> */}
+            ذات مميزات استثنائية
+          </Typography>
         </Box>
 
         <Grid

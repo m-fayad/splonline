@@ -139,7 +139,7 @@ const PersonalDataForm = () => {
     sendDataToServer({
       data: arabicData,
       current: "التحقق من الهوية الشخصية",
-      nextPage: "تسجيل بيانات الدخول",
+      nextPage: "إنشاء حساب أفراد",
     });
   };
 

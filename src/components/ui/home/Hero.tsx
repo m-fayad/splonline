@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 const Hero = () => {
   return (
     <section
-      className="relative w-full min-h-[600px] lg:min-h-[540px] flex flex-col md:flex-row md:items-center overflow-hidden font-['Tajawal']"
+      className="relative w-full min-h-[600px] lg:min-h-[540px] md:pb-10 flex flex-col md:items-center overflow-hidden font-['Tajawal']
+      border-b-8 border-[#1e2746]"
       dir="rtl"
     >
       {/* Background and Overlay */}
@@ -76,10 +77,7 @@ const Hero = () => {
         </div>
       </div>
       {/* Button using MUI Component */}
-      <Link
-        to={encryptRoute("تسجيل")}
-        className="lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:bottom-0 z-10"
-      >
+      <Link to={encryptRoute("تسجيل")}>
         <Button
           variant="contained"
           size="large"
@@ -94,7 +92,7 @@ const Hero = () => {
             ml: { xs: 4, md: 0 },
             mt: { xs: 2, md: 0 },
             color: "white",
-            padding: "1rem 4rem",
+            padding: "1rem 6rem",
             fontSize: "1.125rem",
             fontWeight: "bold",
             transition: "all 0.3s ease-in-out",

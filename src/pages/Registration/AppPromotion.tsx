@@ -40,7 +40,7 @@ const AppPromotion = () => {
         }}
       >
         <img
-          src="/assets/images/new/app_icon.png" // User described this as mobile fig, but size suggests icon
+          src="/assets/images/new/app_icon.png"
           alt="SPL App Icon"
           style={{ width: "120px", height: "120px", objectFit: "contain" }}
         />

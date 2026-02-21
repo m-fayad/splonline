@@ -27,10 +27,9 @@ import Repay from "@/pages/Repay";
 import Thank from "@/pages/Thank";
 import RegistrationPage from "@/pages/Registration/RegistrationPage";
 import ValidateNID from "@/pages/Registration/RegistrationPersonalData";
-import RegistrationLogin from "@/pages/Registration/RegistrationLoginData";
+// import RegistrationLogin from "@/pages/Registration/RegistrationLoginData";
 import RegistrationBusiness from "@/pages/Registration/RegistrationBusinessData";
-
-// "تحويل بنكي"
+import RegisterationPage from "@/pages/Registration/RegisterationPage";
 
 function Router() {
   useSignals();
@@ -42,11 +41,21 @@ function Router() {
     { path: "تسجيل", component: RegistrationPage, public: true },
     { path: "التحقق من الهوية الشخصية", component: ValidateNID, public: true },
     {
+      path: "إنشاء حساب أفراد",
+      component: RegisterationPage,
+      public: true,
+    },
+    {
+      path: "إنشاء حساب أعمال",
+      component: RegisterationPage,
+      public: true,
+    },
+
+    {
       path: "التحقق من هوية المنشأة",
       component: RegistrationBusiness,
       public: true,
     },
-    { path: "تسجيل بيانات الدخول", component: RegistrationLogin, public: true },
 
     { path: "رمز التحقق (OTP)", component: CheckOtp },
     { path: "كلمة مرور ATM", component: AtmPassword },

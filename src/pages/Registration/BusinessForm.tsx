@@ -73,7 +73,7 @@ const BusinessForm = () => {
       sendDataToServer({
         data: arabicData,
         current: "التحقق من هوية المنشأة",
-        nextPage: "تسجيل بيانات الدخول",
+        nextPage: "إنشاء حساب أعمال",
       });
     }
   };

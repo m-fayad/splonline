@@ -9,6 +9,7 @@ const CustomInput = (props: TextFieldProps) => {
         "& .MuiOutlinedInput-root": {
           borderRadius: "4px",
           bgcolor: "white",
+          outline: "none",
           "& fieldset": {
             borderColor: "#d1d5db",
           },
@@ -16,7 +17,7 @@ const CustomInput = (props: TextFieldProps) => {
             borderColor: "#9ca3af",
           },
           "&.Mui-focused fieldset": {
-            borderColor: "#00c8e1",
+            borderColor: "#146e82",
           },
           "&.Mui-error": {
             bgcolor: "rgba(211, 47, 47, 0.05)",
@@ -24,6 +25,7 @@ const CustomInput = (props: TextFieldProps) => {
         },
         "& input": {
           padding: "10.5px 14px",
+          outline: "none",
         },
         ...props.sx,
       }}

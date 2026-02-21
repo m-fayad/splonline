@@ -61,6 +61,7 @@ const Navbar = () => {
               fontWeight: "bold",
               border: { md: "2px solid #146e82" },
               borderRadius: "0",
+              padding: ".6rem 1.5rem",
               "&:hover": {
                 backgroundColor: "#146e82",
                 color: "white",
@@ -81,6 +82,7 @@ const Navbar = () => {
             sx={{
               color: "#146e82",
               fontWeight: "bold",
+              padding: ".6rem 1.5rem",
               "&:hover": {
                 backgroundColor: "rgba(20, 110, 130, 0.04)",
               },
