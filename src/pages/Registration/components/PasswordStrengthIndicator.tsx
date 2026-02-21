@@ -3,7 +3,7 @@ import Typography from "@mui/material/Typography";
 import {
   getPasswordStrength,
   passwordStrengthLabels,
-} from "./registration-utils";
+} from "../utils/registration-utils";
 
 interface PasswordStrengthIndicatorProps {
   password: string;

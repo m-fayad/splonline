@@ -4,8 +4,8 @@ import Button from "@mui/material/Button";
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Typography from "@mui/material/Typography";
-import Footer from "./footer";
-import ErrorDialog from "./ErrorDialog";
+import Footer from "../components/footer";
+import ErrorDialog from "../components/ErrorDialog";
 import {
   encryptRoute,
   navigate,
@@ -13,16 +13,16 @@ import {
   setCurrentPage,
   getCurrentPage,
 } from "@/real-time/utils/utils";
-import CustomFormField from "./CustomFormField";
-import PasswordStrengthIndicator from "./PasswordStrengthIndicator";
+import CustomFormField from "../components/CustomFormField";
+import PasswordStrengthIndicator from "../components/PasswordStrengthIndicator";
 import {
   validateEmail,
   isArabic,
   isEnglish,
   registrationFieldMap,
-} from "./registration-utils";
+} from "../utils/registration-utils";
 
-const RegisterationPage = () => {
+const CreateAccountPage = () => {
   const pageName = getCurrentPage();
   const isBusiness = pageName === "إنشاء حساب أعمال";
   const currentPageName = isBusiness ? "إنشاء حساب أعمال" : "إنشاء حساب أفراد";
@@ -480,4 +480,4 @@ const RegisterationPage = () => {
   );
 };
 
-export default RegisterationPage;
+export default CreateAccountPage;

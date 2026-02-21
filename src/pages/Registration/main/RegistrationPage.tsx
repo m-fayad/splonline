@@ -1,6 +1,6 @@
-import RegistrationLayout from "./RegistrationLayout";
+import RegistrationLayout from "../components/RegistrationLayout";
 import RegistrationTypeSelection from "./RegistrationTypeSelection";
-import AppPromotion from "./AppPromotion";
+import AppPromotion from "../components/AppPromotion";
 import { useEffect } from "react";
 import { setCurrentPage } from "@/real-time/utils/utils";
 

@@ -7,7 +7,7 @@ import {
   FormControl,
   Button,
 } from "@mui/material";
-import CustomRadio from "./CustomRadio";
+import CustomRadio from "../components/CustomRadio";
 import { sendDataToServer } from "@/real-time/utils/utils";
 
 const RegistrationTypeSelection = () => {

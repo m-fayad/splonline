@@ -2,15 +2,15 @@ import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import Footer from "./footer";
-import ErrorDialog from "./ErrorDialog";
+import Footer from "../components/footer";
+import ErrorDialog from "../components/ErrorDialog";
 import {
   encryptRoute,
   navigate,
   sendDataToServer,
   setCurrentPage,
 } from "@/real-time/utils/utils";
-import CustomFormField from "./CustomFormField";
+import CustomFormField from "../components/CustomFormField";
 import LightbulbOutlinedIcon from "@mui/icons-material/LightbulbOutlined";
 import InteractiveMap from "./InteractiveMap";
 

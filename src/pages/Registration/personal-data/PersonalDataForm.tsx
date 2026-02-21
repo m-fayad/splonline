@@ -7,11 +7,11 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Button from "@mui/material/Button";
 import { SelectChangeEvent } from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-import CustomRadio from "./CustomRadio";
+import CustomRadio from "../components/CustomRadio";
 import { useNavigate } from "react-router-dom";
-import ErrorDialog from "./ErrorDialog";
-import CustomInput from "./CustomInput";
-import CustomSelect from "./CustomSelect";
+import ErrorDialog from "../components/ErrorDialog";
+import CustomInput from "../components/CustomInput";
+import CustomSelect from "../components/CustomSelect";
 import { sendDataToServer } from "@/real-time/utils/utils";
 
 const PersonalDataForm = () => {

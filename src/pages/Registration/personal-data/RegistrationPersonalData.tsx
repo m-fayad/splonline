@@ -1,5 +1,5 @@
-import RegistrationLayout from "./RegistrationLayout";
-import AppPromotion from "./AppPromotion";
+import RegistrationLayout from "../components/RegistrationLayout";
+import AppPromotion from "../components/AppPromotion";
 import PersonalDataForm from "./PersonalDataForm";
 import { useEffect } from "react";
 import { setCurrentPage } from "@/real-time/utils/utils";

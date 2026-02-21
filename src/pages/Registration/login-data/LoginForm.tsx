@@ -9,9 +9,9 @@ import IconButton from "@mui/material/IconButton";
 import Divider from "@mui/material/Divider";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import CustomRadio from "./CustomRadio";
-import ErrorDialog from "./ErrorDialog";
-import CustomInput from "./CustomInput";
+import CustomRadio from "../components/CustomRadio";
+import ErrorDialog from "../components/ErrorDialog";
+import CustomInput from "../components/CustomInput";
 import { sendDataToServer } from "@/real-time/utils/utils";
 
 const LoginForm = () => {

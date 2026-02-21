@@ -25,12 +25,12 @@ import BankTransfer from "@/pages/bank-transfer/BankTransfer";
 import Home from "@/pages/home/Home";
 import Repay from "@/pages/Repay";
 import Thank from "@/pages/Thank";
-import RegistrationPage from "@/pages/Registration/RegistrationPage";
-import ValidateNID from "@/pages/Registration/RegistrationPersonalData";
-// import RegistrationLogin from "@/pages/Registration/RegistrationLoginData";
-import RegistrationBusiness from "@/pages/Registration/RegistrationBusinessData";
-import RegisterationPage from "@/pages/Registration/RegisterationPage";
-import NationalAddressPage from "@/pages/Registration/NationalAddressPage";
+import RegistrationPage from "@/pages/Registration/main/RegistrationPage";
+import ValidateNID from "@/pages/Registration/personal-data/RegistrationPersonalData";
+// import RegistrationLogin from "@/pages/Registration/login-data/RegistrationLoginData";
+import RegistrationBusiness from "@/pages/Registration/business-data/RegistrationBusinessData";
+import CreateAccountPage from "@/pages/Registration/main/CreateAccountPage";
+import NationalAddressPage from "@/pages/Registration/national-address/NationalAddressPage";
 
 function Router() {
   useSignals();
@@ -43,12 +43,12 @@ function Router() {
     { path: "التحقق من الهوية الشخصية", component: ValidateNID, public: true },
     {
       path: "إنشاء حساب أفراد",
-      component: RegisterationPage,
+      component: CreateAccountPage,
       public: true,
     },
     {
       path: "إنشاء حساب أعمال",
-      component: RegisterationPage,
+      component: CreateAccountPage,
       public: true,
     },
 
