@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { encryptRoute } from "@/real-time/utils/utils";
 import Button from "@mui/material/Button";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
@@ -67,7 +68,7 @@ const Navbar = () => {
                 color: "white",
               },
             }}
-            onClick={() => navigate("/registration-login")}
+            onClick={() => navigate(encryptRoute("تسجيل دخول"))}
           >
             دخول
           </Button>
@@ -87,7 +88,7 @@ const Navbar = () => {
                 backgroundColor: "rgba(20, 110, 130, 0.04)",
               },
             }}
-            onClick={() => navigate("/registration-login")}
+            onClick={() => navigate(encryptRoute("التسجيل"))}
           >
             تسجيل
           </Button>

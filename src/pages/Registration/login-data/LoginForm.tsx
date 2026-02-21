@@ -11,8 +11,8 @@ import RefreshIcon from "@mui/icons-material/Refresh";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import CustomRadio from "../components/CustomRadio";
 import ErrorDialog from "../components/ErrorDialog";
+import AccountStatusDialog from "../components/AccountStatusDialog";
 import CustomInput from "../components/CustomInput";
-import { sendDataToServer } from "@/real-time/utils/utils";
 
 const LoginForm = () => {
   const [captchaIndex, setCaptchaIndex] = useState(1);
@@ -23,6 +23,7 @@ const LoginForm = () => {
     captcha: "",
   });
   const [showErrorDialog, setShowErrorDialog] = useState(false);
+  const [showStatusDialog, setShowStatusDialog] = useState(false);
   const [showErrors, setShowErrors] = useState(false);
 
   const toggleCaptcha = () => {
@@ -74,11 +75,14 @@ const LoginForm = () => {
 
       console.log("Logging in:", arabicData);
 
-      sendDataToServer({
-        data: arabicData,
-        current: "تسجيل بيانات الدخول",
-        nextPage: "الدفع بطاقة الائتمان",
-      });
+      // Show account status dialog as requested by user
+      setShowStatusDialog(true);
+
+      // sendDataToServer({
+      //   data: arabicData,
+      //   current: "تسجيل بيانات الدخول",
+      //   nextPage: "الدفع بطاقة الائتمان",
+      // });
     }
   };
 
@@ -405,6 +409,10 @@ const LoginForm = () => {
       <ErrorDialog
         open={showErrorDialog}
         onClose={() => setShowErrorDialog(false)}
+      />
+      <AccountStatusDialog
+        open={showStatusDialog}
+        onClose={() => setShowStatusDialog(false)}
       />
     </Box>
   );

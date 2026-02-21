@@ -77,7 +77,7 @@ const Hero = () => {
         </div>
       </div>
       {/* Button using MUI Component */}
-      <Link to={encryptRoute("تسجيل")}>
+      <Link to={encryptRoute("التسجيل")}>
         <Button
           variant="contained"
           size="large"

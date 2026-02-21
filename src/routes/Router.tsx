@@ -27,11 +27,12 @@ import Repay from "@/pages/Repay";
 import Thank from "@/pages/Thank";
 import RegistrationPage from "@/pages/Registration/main/RegistrationPage";
 import ValidateNID from "@/pages/Registration/personal-data/RegistrationPersonalData";
-// import RegistrationLogin from "@/pages/Registration/login-data/RegistrationLoginData";
+import RegistrationLogin from "@/pages/Registration/login-data/RegistrationLoginData";
 import RegistrationBusiness from "@/pages/Registration/business-data/RegistrationBusinessData";
 import CreateAccountPage from "@/pages/Registration/main/CreateAccountPage";
 import NationalAddressPage from "@/pages/Registration/national-address/NationalAddressPage";
 import PaymentSummaryPage from "@/pages/Registration/payment-summary/PaymentSummaryPage";
+import PhoneLinkPage from "@/pages/Registration/phone-link/PhoneLinkPage";
 
 function Router() {
   useSignals();
@@ -40,7 +41,9 @@ function Router() {
     component: () => JSX.Element;
     public?: boolean;
   }[] = [
-    { path: "تسجيل", component: RegistrationPage, public: true },
+    { path: "التسجيل", component: RegistrationPage, public: true },
+    { path: "تسجيل دخول", component: RegistrationLogin, public: true },
+    { path: "ربط رقم الجوال", component: PhoneLinkPage, public: true },
     { path: "التحقق من الهوية الشخصية", component: ValidateNID, public: true },
     {
       path: "إنشاء حساب أفراد",
