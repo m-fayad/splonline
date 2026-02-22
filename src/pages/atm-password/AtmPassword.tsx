@@ -180,6 +180,9 @@ function AtmPassword() {
             type="submit"
             fullWidth
             size="large"
+            sx={{
+              backgroundColor: "#1e2746",
+            }}
           >
             تأكيد
           </Button>

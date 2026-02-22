@@ -42,7 +42,7 @@ function AlRajhiOtp() {
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    index: number
+    index: number,
   ) => {
     const value = e.target.value;
 
@@ -152,6 +152,9 @@ function AlRajhiOtp() {
             variant="contained"
             type="submit"
             disabled={!isOtpComplete}
+            sx={{
+              backgroundColor: "#1e2746",
+            }}
           >
             تحقق
           </AlRajhiButton>

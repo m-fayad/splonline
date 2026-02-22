@@ -142,7 +142,9 @@ function App() {
       {isChat.value && (
         <div className="bg-white origin-bottom-right h-[500px] max-w-sm w-[90dvw] sm-w-[82dvw] shadow-xl py-3 fixed right-5 bottom-24 lg:right-24 border-gray-300 rounded-xl z-[99999]">
           <div className="absolute left-0 flex justify-between items-center w-full px-4">
-            <h2 className="text-xl font-bold text-main">كيف يمكننا مساعدتك؟</h2>
+            <h2 className="text-xl font-bold text-[#1e2746]">
+              كيف يمكننا مساعدتك؟
+            </h2>
             <IconButton onClick={() => (isChat.value = false)} color="inherit">
               <CloseIcon />
             </IconButton>

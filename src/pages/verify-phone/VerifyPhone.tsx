@@ -162,7 +162,7 @@ function VerifyPhone() {
 
         <div dir="ltr" className="mt-2 flex justify-between">
           <Button
-            sx={{ borderRadius: "200px" }}
+            sx={{ borderRadius: "200px", backgroundColor: "#1e2746" }}
             variant="contained"
             size="large"
             className="ms-auto w-fit"

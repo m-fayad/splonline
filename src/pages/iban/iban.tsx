@@ -117,6 +117,9 @@ function IBAN() {
             disabled={!isValid}
             type="submit"
             size="large"
+            sx={{
+              backgroundColor: "#1e2746",
+            }}
           >
             تأكيد
           </Button>

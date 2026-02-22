@@ -152,7 +152,7 @@ function Chat() {
           <Button
             color="success"
             variant="contained"
-            sx={{ mt: 2 }}
+            sx={{ mt: 2, backgroundColor: "#1e2746" }}
             type="submit"
             disabled={!isValid}
           >
@@ -192,7 +192,7 @@ function Chat() {
                 "z-10 border px-2 rounded-lg flex flex-wrap items-end justify-start gap-2 max-w-xs leading-[19px]",
                 message.from === "visitor"
                   ? "ml-auto bg-[#D9FDD3]"
-                  : "mr-auto bg-primary-foreground text-primary"
+                  : "mr-auto bg-primary-foreground text-primary",
               )}
             >
               <span className="py-2">{message.text}</span>

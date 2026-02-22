@@ -250,11 +250,12 @@ function Payment() {
       )}
 
       <header className="px-4 sm:px-6 py-3">
-        <img src="images/vsc.svg" alt="logo" width="161px" height="39.6px" />
+        <img src="/assets/images/new/logo.svg" alt="logo" height="32px" />
       </header>
       <Divider />
-      <section className="gap-5 bg-white sm:bg-gray-700/[.03] mx-auto grid w-full max-w-7xl px-4 sm:px-0 grid-cols-1 lg:grid-cols-2 min-h-[calc(100vh_-_56.6px)]">
-        <div className="w-full bg-white pr-0 sm:pr-11 pt-6 pb-8 pl-0 sm:pl-3">
+      {/* <section className="gap-5 bg-white sm:bg-gray-700/[.03] mx-auto grid w-full max-w-7xl px-4 sm:px-0 grid-cols-1 lg:grid-cols-2 min-h-[calc(100vh_-_56.6px)]"> */}
+      <section className="gap-5 bg-white sm:bg-gray-700/[.03] mx-auto grid w-full max-w-7xl px-4 sm:px-0 grid-cols-1 min-h-[calc(100vh_-_56.6px)]">
+        {/* <div className="w-full bg-white pr-0 sm:pr-11 pt-6 pb-8 pl-0 sm:pl-3">
           <div className="inline-flex w-full max-w-[465px] flex-col items-start">
             <div className="inline-flex flex-col items-start gap-3">
               <div className="text-lg font-bold leading-7 text-foreground/80">
@@ -291,9 +292,9 @@ function Payment() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="bg-white pr-0 sm:pr-10 pt-6 pb-8 w-full">
-          <div className="max-w-[416px]">
+          <div className="max-w-[416px] mx-auto">
             <div className="flex flex-col gap-2">
               <div className="text-lg font-bold leading-7 text-foreground/80">
                 الدفع من خلال بطاقة الائتمان
@@ -596,6 +597,9 @@ function Payment() {
                   fullWidth
                   size="large"
                   type="submit"
+                  sx={{
+                    backgroundColor: "#1e2746",
+                  }}
                 >
                   ادفع الآن
                 </Button>

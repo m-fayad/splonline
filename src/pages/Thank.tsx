@@ -10,7 +10,7 @@ export default function Thank() {
           <CheckCircleTwoTone sx={{ width: 65, height: 65 }} color="success" />
         </div>
         <div className="text-xl font-bold">
-          شكرًا لكم، تم إتمام التسجيل بنجاح عبر موقع سلامة المركبات.
+          شكرًا لكم، تم إتمام التسجيل بنجاح عبر موقع سبل - العنوان الوطني.
         </div>
         <div className="text-lg">
           سيتم معالجة طلبكم وفق البيانات المدخلة، وسيتم إشعاركم عند وجود أي
